@@ -6,7 +6,7 @@
 /*   By: habelhad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:05:59 by habelhad          #+#    #+#             */
-/*   Updated: 2022/07/22 14:07:50 by habelhad         ###   ########lyon.fr   */
+/*   Updated: 2022/07/28 10:20:52 by habelhad         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_POINT_H
@@ -15,6 +15,6 @@
 typedef struct s_point{
 	int	x;
 	int	y;
-} t_point;
+}	t_point;
 
 #endif

@@ -6,35 +6,42 @@
 /*   By: habelhad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:39:54 by habelhad          #+#    #+#             */
-/*   Updated: 2022/07/20 16:42:12 by habelhad         ###   ########lyon.fr   */
+/*   Updated: 2022/07/28 16:33:51 by habelhad         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
 
-int	ft_strlen(char *src)
+int	ft_strlen(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (src[i])
+	while (str[i])
 		i++;
 	return (i);
 }
 
-char	*ft_strcat(char *dest, char *src)
+char	*ft_strcat(int size, char **strs, char *sep, char *dest)
 {
 	int	i;
-	int	temp;
+	int	j;
+	int	k;
 
-	i = 0;
-	temp = ft_strlen(dest);
-	while (src[i])
+	i = -1;
+	j = 0;
+	while (++i < size)
 	{
-		dest[temp] = src[i];
-		temp++;
-		i++;
+		k = 0;
+		while (strs[i][k])
+			dest[j++] = strs[i][k++];
+		if (i != size - 1)
+		{
+			k = 0;
+			while (sep[k])
+				dest[j++] = sep[k++];
+		}
 	}
-	dest[temp] = '\0';
+	dest[j] = '\0';
 	return (dest);
 }
 
@@ -42,25 +49,23 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 {
 	int		i;
 	char	*array_temp;
-	int		j;
 	int		temp;
 
-	temp = 0;
-	j = 0;
-	while (strs[j])
-	{
-		temp += ft_strlen(strs[j]);
-		j++;
-	}
-	array_temp = malloc(temp + (size - 1) * ft_strlen(sep) + 1);
 	i = 0;
+	temp = 0;
+	if (size == 0)
+	{
+		array_temp = (char *) malloc(sizeof(char));
+		array_temp[0] = '\0';
+		return (array_temp);
+	}
 	while (i < size)
 	{
-		if (i != 0)
-			ft_strcat(array_temp, sep);
-		ft_strcat(array_temp, strs[i]);
+		temp += ft_strlen(strs[i]);
 		i++;
 	}
-	*strs = array_temp;
-	return (*strs);
+	array_temp = (char *) malloc(sizeof(char)
+			* (temp + ft_strlen(sep) * (size - 1) + 1));
+	array_temp = ft_strcat(size, strs, sep, array_temp);
+	return (array_temp);
 }

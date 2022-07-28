@@ -6,7 +6,7 @@
 /*   By: habelhad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 18:31:58 by habelhad          #+#    #+#             */
-/*   Updated: 2022/07/18 19:02:08 by habelhad         ###   ########lyon.fr   */
+/*   Updated: 2022/07/28 11:32:43 by habelhad         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -32,7 +32,7 @@ int	*ft_range(int min, int max)
 	int	nbr;
 	int	i;
 
-	int_array = malloc(ft_min_max_diff(min, max) + 1);
+	int_array = malloc(sizeof(int) * (ft_min_max_diff(min, max) + 1));
 	if (int_array == NULL)
 		return (NULL);
 	nbr = min;

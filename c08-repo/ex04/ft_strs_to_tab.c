@@ -6,14 +6,15 @@
 /*   By: habelhad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:55:37 by habelhad          #+#    #+#             */
-/*   Updated: 2022/07/22 19:18:25 by habelhad         ###   ########lyon.fr   */
+/*   Updated: 2022/07/28 10:22:16 by habelhad         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
 #include "ft_stock_str.h"
-#include "ft_show_tab.h"
 
-/*int	ft_strlen(char *str)
+void	ft_show_tab(struct s_stock_str *par);
+
+int	ft_strlen(char *str)
 {
 	int	i;
 
@@ -21,39 +22,41 @@
 	while (str[i])
 		i++;
 	return (i);
-}*/
-
-void ft_convert(char *string, t_stock_str *stock_str)
-{
-	int	i;
-
-	i = 0;
-	stock_str->size = ft_strlen(&string[i]);
-	stock_str->str = &string[i];
-	stock_str->copy = &string[i];
 }
 
-struct	s_stock_str *ft_strs_to_tab(int ac, char **av)
+char	*ft_strcpy(char *dest, char *src)
 {
-	//t_stock_str stock_str;
 	int	i;
-	t_stock_str  *struct_array;
 
-	struct_array = malloc(ft_strlen(*av) + 1);
-	if (struct_array == NULL)
-	{
-		return (struct_array);
-	}
 	i = 0;
-	while (av[i] && i < ac)
+	while (src[i])
 	{
-		ft_convert(av[i], struct_array);
+		dest[i] = src[i];
 		i++;
 	}
-	return (struct_array);
+	dest[i] = '\0';
+	return (dest);
 }
 
-int	main(int argc, char **argv)
+struct	s_stock_str	*ft_strs_to_tab(int ac, char **av)
 {
-	ft_show_tab(ft_strs_to_tab(argc, argv));
+	int			i;
+	t_stock_str	*stock_str;
+
+	stock_str = malloc(sizeof(t_stock_str) * (ac + 1));
+	if (stock_str == NULL)
+		return (stock_str);
+	i = 0;
+	while (i < ac)
+	{
+		stock_str[i].size = ft_strlen(av[i]);
+		stock_str[i].str = av[i];
+		stock_str[i].copy = malloc(sizeof(char) * (stock_str[i].size + 1));
+		if (stock_str[i].copy == 0)
+			return (0);
+		ft_strcpy(stock_str[i].copy, av[i]);
+		i++;
+	}
+	stock_str[i].str = 0;
+	return (stock_str);
 }

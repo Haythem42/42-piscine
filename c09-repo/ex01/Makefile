@@ -3,25 +3,31 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nmilan <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: habelhad <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/07/23 14:20:37 by nmilan            #+#    #+#              #
-#    Updated: 2022/07/23 16:12:55 by nmilan           ###   ########lyon.fr    #
+#    Created: 2022/07/25 13:07:08 by habelhad          #+#    #+#              #
+#    Updated: 2022/07/28 17:27:28 by habelhad         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = rush-02
+NAME = libft.a
 
-PROG = main.c
+PROG = ./srcs/ft_putchar.c ./srcs/ft_swap.c ./srcs/ft_putstr.c ./srcs/ft_strlen.c ./srcs/ft_strcmp.c
+	
+INCLUDE = ./includes/ft.h
 
-all : rush_02
+all : $(NAME)
 
 clean :
-	rm -f $(NAME)
+	rm -f $(PROG)
+	rm -f ./srcs/*.o
 
 fclean : clean
+	rm -f $(NAME)
 
-rush_02 : 
-	gcc -Wall -Wextra -Werror -o $(NAME) $(PROG)
+re : fclean all
 
-
+$(NAME) : $(PROG) $(INCLUDE)
+	gcc -Wall -Wextra -Werror -c $(PROG)
+	mv *.o srcs/
+	ar crs $(NAME) srcs/*.o

@@ -6,7 +6,7 @@
 /*   By: lcrimet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 11:01:35 by lcrimet           #+#    #+#             */
-/*   Updated: 2022/07/24 22:43:32 by lcrimet          ###   ########lyon.fr   */
+/*   Updated: 2022/07/24 23:31:05 by nmilan           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_allocate(char *num)
 		i++;
 		j++;
 	}
-	str = malloc(500 * sizeof(char));
+	str = malloc((ft_strlen(num) + 1) * sizeof(char));
 	if (!str)
 		return (0);
 	return (str);
@@ -55,6 +55,7 @@ char	*ft_atoa(char *str)
 		i++;
 		j++;
 	}
+	clean_array[j] = '\0';
 	return (clean_array);
 }
 
